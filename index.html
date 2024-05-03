@@ -10,15 +10,6 @@
 
 <body>
     <div class="container">
-
-        <div style="height: 200px; width: 300px; background-color: antiquewhite;" id="clickable">
-            <p>Child A
-
-                <span>Child Child A</span>
-            </p>
-            <p>Child B</p>
-        </div>
-
         <div id="left">
             <div class="list" draggable="true">
                 <img src="icon.png" alt="">
@@ -42,28 +33,6 @@
     </div>
 
     <script>
-        class Book {
-    constructor(name, author) {
-        this.name = name;
-        this.author = author;
-    }
-
-    toString() {
-        console.log("Calling toString");
-
-        return this
-    }
-
-    save() {
-        console.log("Calling save");
-    }
-} 
-        function handleOnClick(e) {
-            e.currentTarget.style.backgroundColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
-        }
-
-        document.getElementById('clickable').addEventListener('click', handleOnClick)
-
         let lists = document.getElementsByClassName('list');
         const rightBox = document.getElementById('right');
         const leftBox = document.getElementById('left');
