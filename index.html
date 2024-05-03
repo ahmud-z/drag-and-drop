@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag & Drop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div style="height: 200px; width: 300px; background-color: antiquewhite;" id="clickable">
+            <p>Child A
+
+                <span>Child Child A</span>
+            </p>
+            <p>Child B</p>
+        </div>
+
+        <div id="left">
+            <div class="list" draggable="true">
+                <img src="icon.png" alt="">
+                List Item 1
+            </div>
+            <div class="list" draggable="true">
+                <img src="icon.png" alt="">
+                List Item 2
+            </div>
+            <div class="list" draggable="true">
+                <img src="icon.png" alt="">
+                List Item 3
+            </div>
+            <div class="list" draggable="true">
+                <img src="icon.png" alt="">
+                List Item 4
+            </div>
+        </div>
+        <div id="right">
+        </div>
+    </div>
+
+    <script>
+        class Book {
+    constructor(name, author) {
+        this.name = name;
+        this.author = author;
+    }
+
+    toString() {
+        console.log("Calling toString");
+
+        return this
+    }
+
+    save() {
+        console.log("Calling save");
+    }
+} 
+        function handleOnClick(e) {
+            e.currentTarget.style.backgroundColor = '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+        }
+
+        document.getElementById('clickable').addEventListener('click', handleOnClick)
+
+        let lists = document.getElementsByClassName('list');
+        const rightBox = document.getElementById('right');
+        const leftBox = document.getElementById('left');
+
+        for (list of lists) {
+            list.addEventListener('dragstart', function (e) {
+                let selected = e.currentTarget;
+
+                rightBox.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                })
+                rightBox.addEventListener('drop', function (e) {
+                    rightBox.appendChild(selected);
+                    selected = null;
+                })
+                leftBox.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                })
+                leftBox.addEventListener('drop', function (e) {
+                    leftBox.appendChild(selected);
+                    selected = null;
+                })
+            })
+        }
+    </script>
+
+</body>
+
+</html>
